@@ -1,9 +1,11 @@
 package main
 
 import (
-	"chart1/geo"
+	"App/geo"
 	"flag"
 	"fmt"
+	"io"
+	"strings"
 )
 
 func main() {
@@ -20,5 +22,15 @@ func main() {
 		fmt.Println(err.Error())
 	}
 	fmt.Println(geoData)
+
+	r := strings.NewReader("Привет! Я поток данных")
+	block := make([]byte, 4)
+	for {
+		_, err := r.Read(block)
+		fmt.Printf("%q\n", block)
+		if err == io.EOF {
+			break
+		}
+	}
 
 }
